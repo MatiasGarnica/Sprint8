@@ -32,9 +32,12 @@ class LibroDetails(APIView):
         return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
 
     def delete(self, request, pk):
-        libro = Libro.get_object(pk)
-        libro.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        libro = Libro.objects.filter(pk=pk).first()
+        if libro:
+            libro.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response('error', status=status.HTTP_404_NOT_FOUND)
+
 
 
     def put(self, request, pk):

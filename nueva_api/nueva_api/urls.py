@@ -19,7 +19,7 @@ from libros.views import LibroList, LibroDetails
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/libros/', LibroList.as_view()),
-    path('api/libros/<int:pk>/', LibroDetails.as_view()),
+    path('api/libros', LibroList.as_view()),
+    path('api/libros/<int:pk>', LibroDetails.as_view()),
 
 ]
