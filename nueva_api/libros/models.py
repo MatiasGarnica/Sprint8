@@ -8,6 +8,8 @@ class Libro(models.Model):
     author = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    #agregamos el nuevo campo
+    owner = models.ForeignKey('auth.User', related_name = 'libros', on_delete = models.CASCADE)
 
     #metadata de la clase
     class Meta:

@@ -15,11 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from libros.views import LibroList, LibroDetails
+
+#importamos la clase que definimos en la vista
+from libros import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/libros', LibroList.as_view()),
-    path('api/libros/<int:pk>', LibroDetails.as_view()),
+    path('', views.api_root),
+    path('libros', views.LibroList.as_view(), name='libros-list'),
+    path('libros/<int:pk>', views.LibroDetails.as_view(), name='libro-detail'),
+    path('users', views.UserList.as_view(), name='user-list'),
+    path('users/<int:pk>', views.UserDetail.as_view(), name='user-detail'),
 
 ]
